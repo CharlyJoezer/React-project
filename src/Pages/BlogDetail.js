@@ -19,6 +19,7 @@ export default function BlogDetail() {
 
         const response = await request.json();
 
+        document.title = response.title;
         setArticle(response);
         setLoading(true);
       }
