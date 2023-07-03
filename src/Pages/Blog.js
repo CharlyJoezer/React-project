@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 export default function Blog() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -22,16 +22,20 @@ export default function Blog() {
     <>
       <h1>Halaman Blog</h1>
       <p>Ini adalah article saya</p>
-      {loading ?
-        <article>
-            {articles.map(function (article) {
-            return (
-                <li>Title : {article.title}</li>
-            );
-            })}
-        </article>
-    
-      : <i>Loading Articles ...</i>}
+      {loading ? (
+        articles.map(function (article) {
+          return (
+            <article key={article.id}>
+              <h3>
+                <Link to={"/blog/" + article.id}>{article.title}</Link>
+              </h3>
+              <p>{new Date(article.publishedAt).toLocaleDateString()}</p>
+            </article>
+          );
+        })
+      ) : (
+        <i>Loading Articles ...</i>
+      )}
     </>
   );
 }
