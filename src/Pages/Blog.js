@@ -25,11 +25,16 @@ export default function Blog() {
       {loading ? (
         articles.map(function (article) {
           return (
-            <article key={article.id}>
+            <article key={article.id} className="articles">
               <h3>
-                <Link to={"/blog/" + article.id}>{article.title}</Link>
+                <Link to={"/blog/" + article.id} className="article-link">
+                  {article.title}
+                </Link>
               </h3>
-              <p>{new Date(article.publishedAt).toLocaleDateString()}</p>
+              <p className="article-date">
+                Release Date :{" "}
+                {new Date(article.publishedAt).toLocaleDateString()}
+              </p>
             </article>
           );
         })

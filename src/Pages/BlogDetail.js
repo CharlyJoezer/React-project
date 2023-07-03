@@ -27,18 +27,24 @@ export default function BlogDetail() {
     [params]
   );
 
-  if(notFound){
-    return <h1>Maaf artikel tidak ditemukan!</h1>
+  if (notFound) {
+    return <h1>Maaf artikel tidak ditemukan!</h1>;
   }
 
   return (
     <div>
       {loading ? (
-        <article>
+        <article className="article">
           <h2>{article.title}</h2>
-          <p>{new Date(article.publishedAt).toLocaleDateString()}</p>
-          <img src={article.imageUrl} alt={article.title} />
-          <p>{article.summary}</p>
+          <p className="article-date">
+            Release : {new Date(article.publishedAt).toLocaleDateString()}
+          </p>
+          <img
+            className="article-image"
+            src={article.imageUrl}
+            alt={article.title}
+          />
+          <p className="article-desc">{article.summary}</p>
           <div>
             Source : <a href={article.url}>{article.newsSite}</a>
           </div>
